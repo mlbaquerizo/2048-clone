@@ -156,9 +156,3 @@ Game.prototype.move = function(direction){
 		this.toString();
 	}
 }
-// runner code
-
-
-var game = new Game
-game.start();
-game.toString();
