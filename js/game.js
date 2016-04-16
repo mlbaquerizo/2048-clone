@@ -156,3 +156,22 @@ Game.prototype.move = function(direction){
 		this.toString();
 	}
 }
+
+Game.prototype.bindDir = function(dir){
+	Mousetrap.bind(dir, function(){
+		this.move(dir)
+	}.bind(this))
+}
+
+Game.prototype.bindAll = function(){
+	this.bindDir('right');
+	this.bindDir('left');
+	this.bindDir('up');
+	this.bindDir('down');
+}
+// runner code
+
+// var game = new Game;
+// game.start()
+// game.toString();
+// game.bindAll();
