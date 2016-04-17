@@ -6,21 +6,58 @@
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
-  <link rel="stylesheet" href="/css/normalize.css">
+  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
   <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/css/application.css">
+  <!-- <link rel="stylesheet" href="css/application.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/mousetrap.js"></script>
+  <script src="js/game.js"></script>
+  <script defer src="js/application.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/mousetrap.js"></script>
-  <script src="/js/underscore.js"></script>
-  <script src="/js/game.js"></script>
-  <script src="/js/application.js"></script>
-
-  <title>256!</title>
+  <title>2048-clone</title>
 </head>
 <body>
+  <header>
+    <h1>2048</h1>
+  </header>
+  
+  <div id="game_div">
+    <div id="game_board">
+      <div class="row" id="row1">
+        <div class="tile outer_left" id="tile1"></div>
+        <div class="tile" id="tile2"></div>
+        <div class="tile" id="tile3"></div>
+        <div class="tile" id="tile4"></div>
+      </div>
+      <div class="row" id="row2">
+        <div class="tile outer_left" id="tile5"></div>
+        <div class="tile" id="tile6"></div>
+        <div class="tile" id="tile7"></div>
+        <div class="tile" id="tile8"></div>
+      </div>
+      <div class="row" id="row3">
+        <div class="tile outer_left" id="tile9"></div>
+        <div class="tile" id="tile10"></div>
+        <div class="tile" id="tile11"></div>
+        <div class="tile" id="tile12"></div>
+      </div>
+      <div class="row" id="row4">
+        <div class="tile outer_left" id="tile13"></div>
+        <div class="tile" id="tile14"></div>
+        <div class="tile" id="tile15"></div>
+        <div class="tile" id="tile16"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <form>
+    <input type="submit" value="reset"></input>
+  </form>
 
 </body>
 </html>

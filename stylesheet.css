@@ -1,0 +1,33 @@
+.tile {
+	display: inline-block;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	color: white;
+	background: #65816d;
+	padding: 30px;
+	margin-right: 5px;
+	z-index: 10;
+	width: 30px;
+	height: 30px;
+	border-radius: 2px;
+}
+
+#game_div {
+	margin: auto;
+	width: 389px;
+	height: 394px;
+	position: relative;
+	padding: 10px;
+	background: #c8cbbf;
+	border-radius: 4px;
+}
+
+#game_board {
+	position: absolute;
+}
+
+.row {
+	margin-bottom: 11px;
+	display: inline-block;
+}
