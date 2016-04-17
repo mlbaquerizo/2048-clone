@@ -7,13 +7,13 @@ $(document).ready(function() {
 	_.each(game.tiles, function(row, i){
 		_.each(row, function(tile){
 			tileCount += 1
-			if(i === 0 && tile.value != 0){
+			if(i === 0){
 				$('#row1 #tile'+ tileCount).html(tile.value);
-			} else if(i === 1 && tile.value != 0){
+			} else if(i === 1){
 				$('#row2 #tile'+ tileCount).html(tile.value);
-			} else if(i === 2 && tile.value != 0){
+			} else if(i === 2){
 				$('#row3 #tile'+ tileCount).html(tile.value);
-			} else if(i === 3 && tile.value != 0) {
+			} else{
 				$('#row4 #tile'+ tileCount).html(tile.value)
 			}
 		})
