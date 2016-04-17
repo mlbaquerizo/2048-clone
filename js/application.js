@@ -13,6 +13,15 @@ $(document).ready(function() {
 			colorizeTiles();
 		}
 	});
+
+	$('#reset_game').on('submit', function(event){
+		event.preventDefault();
+		game.start();
+		game.toString();
+		game.bindAll();
+		renderBoard(game);
+		colorizeTiles();
+	})
 });
 
 function renderBoard(game) {

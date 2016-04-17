@@ -10,14 +10,24 @@ Tile.prototype.randomizeTile = function(){
 
 function Game(tiles) {
 	this.tiles = [
-	[new Tile, new Tile, new Tile, new Tile],
-	[new Tile, new Tile, new Tile, new Tile],
-	[new Tile, new Tile, new Tile, new Tile],
-	[new Tile, new Tile, new Tile, new Tile]
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile]
+	]
+}
+
+Game.prototype.reset = function(){
+	this.tiles = [
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile]
 	]
 }
 
 Game.prototype.start = function(){
+	this.reset();
 	var Indices = [0,1,2,3];
 
 	var rowIndex1 = _.sample(Indices);
