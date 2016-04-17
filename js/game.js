@@ -28,14 +28,15 @@ Game.prototype.reset = function(){
 
 Game.prototype.start = function(){
 	this.reset();
-	var Indices = [0,1,2,3];
+	var indices = [0,1,2,3];
 
-	var rowIndex1 = _.sample(Indices);
-	var rowIndex2 = _.sample(Indices);
-	var tileIndex1 = _.sample(Indices);
-	var	tileIndex2 = _.sample(Indices);
-	while(tileIndex2 === tileIndex1){
-		tileIndex2 = _.sample(Indices);
+	var rowIndex1 = _.sample(indices);
+	var rowIndex2 = _.sample(indices);
+	var tileIndex1 = _.sample(indices);
+	var	tileIndex2 = _.sample(indices);
+	while(tileIndex2 === tileIndex1 && rowIndex1 === rowIndex2){
+		rowIndex2 = _.sample(indices);
+		tileIndex2 = _.sample(indices);
 	}
 
 	this.tiles[rowIndex1][tileIndex1].randomizeTile();
