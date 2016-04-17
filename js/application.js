@@ -1,10 +1,6 @@
 $(document).ready(function() {
 	var game = new Game;
-	game.start();
-	game.toString();
-	game.bindAll();
-	renderBoard(game);
-	colorizeTiles();
+	startNewGame(game);
 
 	$(this).keyup(function(e){
 		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
@@ -16,13 +12,18 @@ $(document).ready(function() {
 
 	$('#reset_game').on('submit', function(event){
 		event.preventDefault();
-		game.start();
-		game.toString();
-		game.bindAll();
-		renderBoard(game);
-		colorizeTiles();
+		startNewGame(game);
 	})
+
 });
+
+function startNewGame(game) {
+	game.start();
+	game.toString();
+	game.bindAll();
+	renderBoard(game);
+	colorizeTiles();
+}
 
 function renderBoard(game) {
 	var tileCount = 0
