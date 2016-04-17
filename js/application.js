@@ -12,7 +12,7 @@ $(document).ready(function() {
 			renderBoard(game);
 			colorizeTiles();
 		}
-	})
+	});
 });
 
 function renderBoard(game) {

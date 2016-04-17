@@ -169,9 +169,3 @@ Game.prototype.bindAll = function(){
 	this.bindDir('up');
 	this.bindDir('down');
 }
-// runner code
-
-// var game = new Game;
-// game.start()
-// game.toString();
-// game.bindAll();
