@@ -21,7 +21,7 @@ function setUpReset(game) {
 	$('#reset_game').on('submit', function(event){
 		event.preventDefault();
 		startNewGame(game);
-		$('#game_over_div').hide();
+		$('#game_over_div').fadeOut(300);
 	});
 }
 
