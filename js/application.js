@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var game = new Game;
 	startNewGame(game);
 
-	$(this).keyup(function(e){
+	$(this).keydown(function(e){
 		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
 			game.bindAll();
 			renderBoard(game);
@@ -45,8 +45,8 @@ function renderBoard(game) {
 
 function colorizeTiles() {
 	var $zeroTiles = $('.tile:contains(0)');
-	$zeroTiles.css('background-color', '#a2a399');
-	$zeroTiles.css('color', '#a2a399');
+	$zeroTiles.css('background-color', '#c6cecb');
+	$zeroTiles.css('color', '#c6cecb');
 	var $twoTiles = $('.tile:contains(2)');
 	$twoTiles.css('background-color', '#bfdad0');
 	$twoTiles.css('color', '#405b50');

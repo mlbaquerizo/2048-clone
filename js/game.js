@@ -112,6 +112,41 @@ Game.prototype.canZipRight = function(){
 	return !(tileJson == JSON.stringify(clone));
 }
 
+Game.prototype.canZipLeft = function(){
+	_.each(this.tiles, function(row){
+		row.reverse();
+	});
+	return this.canZipRight();
+	_.each(this.tiles, function(row){
+		row.reverse();
+	});
+}
+
+Game.prototype.canZipUp = function(){
+	this.tiles = _.zip.apply(_, this.tiles)
+	_.each(this.tiles, function(row){
+		row.reverse();
+	});
+	return this.canZipRight();
+	_.each(this.tiles, function(row){
+		row.reverse();
+	});
+}
+
+Game.prototype.canMove = function(){
+	if(this.canZipRight() === true || this.canZipLeft === true || this.canZipUp === true || this.canZipDown === true){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+Game.prototype.canZipDown = function(){
+	this.tiles = _.zip.apply(_, this.tiles)
+	return this.canZipRight();
+	this.tiles = _.zip.apply(_, this.tiles)
+}
+
 Game.prototype.insertRandom = function(){
 	var Indices = [0,1,2,3];
 
@@ -168,6 +203,7 @@ Game.prototype.move = function(direction){
 	}
 }
 
+
 Game.prototype.bindDir = function(dir){
 	Mousetrap.bind(dir, function(){
 		this.move(dir)
@@ -180,3 +216,10 @@ Game.prototype.bindAll = function(){
 	this.bindDir('up');
 	this.bindDir('down');
 }
+
+// runner code
+
+var game = new Game
+game.start();
+game.bindAll();
+game.toString();
