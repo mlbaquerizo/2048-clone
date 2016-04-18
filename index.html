@@ -16,16 +16,30 @@
   <script src="js/mousetrap.js"></script>
   <script src="js/game.js"></script>
   <script defer src="js/application.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Rubik:500,800' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
   <title>2048-clone</title>
 </head>
 <body>
+
   <header>
     <h1>2048</h1>
+
+    <form class="reset_game">
+      <input type="submit" value="New Game"></input>
+    </form>
+
+
   </header>
-  
+  <div id="game_directions">
+    <h3>DIRECTIONS</h3>
+    <p>Add up like numbers until you get the 2048 tile.</p>
+    <p>Use the arrow keys to move the tiles.</p>
+  </div>
+
   <div id="game_div">
+
     <div id="game_board">
       <div class="row" id="row1">
         <div class="tile outer_left" id="tile1"></div>
@@ -53,11 +67,14 @@
       </div>
     </div>
 
-  </div>
+    <div id="game_over_div">
+      <p>Game Over!</p>
+      <form class="reset_game">
+        <input type="submit" value="New Game"></input>
+      </form>
+    </div>
 
-  <form>
-    <input type="submit" value="reset"></input>
-  </form>
+  </div>
 
 </body>
 </html>

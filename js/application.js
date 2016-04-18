@@ -1,19 +1,36 @@
 $(document).ready(function() {
 	var game = new Game;
-	game.start();
-	game.toString();
-	game.bindAll();
-	renderBoard(game);
-	colorizeTiles();
-
-	$(this).keyup(function(e){
+	startNewGame(game);
+	setUpReset(game);
+	
+	$(this).keydown(function(e){
 		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
 			game.bindAll();
 			renderBoard(game);
 			colorizeTiles();
+			if(game.canMove() === false){
+				$('#game_over_div').delay(350).fadeIn(300);
+			}
 		}
 	});
+
 });
+
+function setUpReset(game) {
+	$('.reset_game').on('submit', function(e){
+		e.preventDefault();
+		$('#game_over_div').fadeOut(300);
+		startNewGame(game);
+	});
+}
+
+function startNewGame(game) {
+	game.bindAll();
+	game.start();
+	game.toString();
+	renderBoard(game);
+	colorizeTiles();
+}
 
 function renderBoard(game) {
 	var tileCount = 0
@@ -35,8 +52,9 @@ function renderBoard(game) {
 
 function colorizeTiles() {
 	var $zeroTiles = $('.tile:contains(0)');
-	$zeroTiles.css('background-color', '#a2a399');
-	$zeroTiles.css('color', '#a2a399');
+	// $zeroTiles.html("");
+	$zeroTiles.css('background-color', '#c6cecb');
+	$zeroTiles.css('color', '#c6cecb');
 	var $twoTiles = $('.tile:contains(2)');
 	$twoTiles.css('background-color', '#bfdad0');
 	$twoTiles.css('color', '#405b50');

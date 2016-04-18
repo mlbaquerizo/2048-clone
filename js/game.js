@@ -10,22 +10,33 @@ Tile.prototype.randomizeTile = function(){
 
 function Game(tiles) {
 	this.tiles = [
-	[new Tile, new Tile, new Tile, new Tile],
-	[new Tile, new Tile, new Tile, new Tile],
-	[new Tile, new Tile, new Tile, new Tile],
-	[new Tile, new Tile, new Tile, new Tile]
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile]
+	]
+}
+
+Game.prototype.reset = function(){
+	this.tiles = [
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile],
+		[new Tile, new Tile, new Tile, new Tile]
 	]
 }
 
 Game.prototype.start = function(){
-	var Indices = [0,1,2,3];
+	this.reset();
+	var indices = [0,1,2,3];
 
-	var rowIndex1 = _.sample(Indices);
-	var rowIndex2 = _.sample(Indices);
-	var tileIndex1 = _.sample(Indices);
-	var	tileIndex2 = _.sample(Indices);
-	while(tileIndex2 === tileIndex1){
-		tileIndex2 = _.sample(Indices);
+	var rowIndex1 = _.sample(indices);
+	var rowIndex2 = _.sample(indices);
+	var tileIndex1 = _.sample(indices);
+	var	tileIndex2 = _.sample(indices);
+	while(tileIndex2 === tileIndex1 && rowIndex1 === rowIndex2){
+		rowIndex2 = _.sample(indices);
+		tileIndex2 = _.sample(indices);
 	}
 
 	this.tiles[rowIndex1][tileIndex1].randomizeTile();
@@ -66,9 +77,7 @@ Game.prototype.addRight = function(){
 	})
 }
 
-Game.prototype.canZipRight = function(){
-	var tileJson = JSON.stringify(this.tiles)
-	var clone = JSON.parse(JSON.stringify(this.tiles));
+function zipCloneRight(clone) {
 	_.each(clone, function(row){
 		_.each(row, function(tile, i){
 			if(tile.value === 0){
@@ -91,14 +100,66 @@ Game.prototype.canZipRight = function(){
 							row.splice(i, 1);
 							while(row.length < 4){
 							row.unshift(new Tile);
+							}
 						}
-					}
+					})
 				})
-			})
 			}
 		}
 	})
+	return clone;
+}
+
+Game.prototype.canZipRight = function(){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	zipCloneRight(clone)
 	return !(tileJson == JSON.stringify(clone));
+}
+
+Game.prototype.canZipLeft = function(){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	_.each(clone, function(row){
+		row.reverse();
+	});
+	zipCloneRight(clone);
+	_.each(clone, function(row){
+		row.reverse();
+	});
+	return !(tileJson == JSON.stringify(clone));
+}
+
+Game.prototype.canZipUp = function(){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	clone = _.zip.apply(_, clone);
+	_.each(clone, function(row){
+		row.reverse();
+	});
+	zipCloneRight(clone);
+	_.each(clone, function(row){
+		row.reverse();
+	});
+	clone = _.zip.apply(_, clone);
+	return !(tileJson == JSON.stringify(clone));
+}
+
+Game.prototype.canZipDown = function(){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	clone = _.zip.apply(_, clone);
+	zipCloneRight(clone);
+	clone = _.zip.apply(_, clone);
+	return !(tileJson == JSON.stringify(clone));
+}
+
+Game.prototype.canMove = function(){
+	if(this.canZipRight() === true || this.canZipLeft() === true || this.canZipUp() === true || this.canZipDown() === true){
+		return true;
+	} else {
+		return false;
+	}
 }
 
 Game.prototype.insertRandom = function(){
@@ -157,15 +218,16 @@ Game.prototype.move = function(direction){
 	}
 }
 
-Game.prototype.bindDir = function(dir){
-	Mousetrap.bind(dir, function(){
+
+Game.prototype.bindDir = function(keys, dir){
+	Mousetrap.bind(keys, function(e){
 		this.move(dir)
 	}.bind(this))
 }
 
 Game.prototype.bindAll = function(){
-	this.bindDir('right');
-	this.bindDir('left');
-	this.bindDir('up');
-	this.bindDir('down');
+	this.bindDir(['right'], 'right');
+	this.bindDir(['left'], 'left');
+	this.bindDir(['up'], 'up');
+	this.bindDir(['down'], 'down');
 }
