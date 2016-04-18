@@ -10,7 +10,7 @@ $(document).ready(function() {
 			colorizeTiles();
 			console.log(game.canMove());
 			if(game.canMove() === false){
-				$('#game_over_div').show();
+				$('#game_over_div').delay(400).fadeIn(300);
 			}
 		}
 	});
@@ -53,6 +53,7 @@ function renderBoard(game) {
 
 function colorizeTiles() {
 	var $zeroTiles = $('.tile:contains(0)');
+	// $zeroTiles.html("");
 	$zeroTiles.css('background-color', '#c6cecb');
 	$zeroTiles.css('color', '#c6cecb');
 	var $twoTiles = $('.tile:contains(2)');
