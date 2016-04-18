@@ -22,6 +22,15 @@ input[type=submit] {
 	outline: none;
 }
 
+#game_directions {
+	margin-bottom: 15px;
+}
+
+#game_directions p {
+	text-align: center;
+	margin: 0;
+}
+
 .tile {
 	display: inline-block;
 	text-align: center;
