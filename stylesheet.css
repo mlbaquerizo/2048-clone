@@ -18,6 +18,8 @@ input[type=submit] {
 	border: none;
 	border-radius: 2px;
 	color: white;
+	cursor: pointer;
+	outline: none;
 }
 
 .tile {
@@ -41,7 +43,7 @@ input[type=submit] {
 	position: relative;
 	padding: 10px;
 	background: #9ea4a2;
-	border-radius: 4px;
+	border-radius: 5px;
 }
 
 #game_board {

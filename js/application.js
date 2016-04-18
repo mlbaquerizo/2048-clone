@@ -4,7 +4,7 @@ $(document).ready(function() {
 	setUpReset(game);
 	
 	$(this).keydown(function(e){
-		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40 || e.keyCode == 65 || e.keyCode == 68 || e.keyCode == 83 || e.keyCode == 87){
+		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
 			game.bindAll();
 			renderBoard(game);
 			colorizeTiles();
@@ -17,17 +17,17 @@ $(document).ready(function() {
 });
 
 function setUpReset(game) {
-	$('#reset_game').on('submit', function(e){
+	$('.reset_game').on('submit', function(e){
 		e.preventDefault();
-		startNewGame(game);
 		$('#game_over_div').fadeOut(300);
+		startNewGame(game);
 	});
 }
 
 function startNewGame(game) {
+	game.bindAll();
 	game.start();
 	game.toString();
-	game.bindAll();
 	renderBoard(game);
 	colorizeTiles();
 }
