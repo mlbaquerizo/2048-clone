@@ -8,7 +8,7 @@ header {
 	font-weight: bold;
 	font-size: 30px;
 	color: white;
-	background: #65816d;
+	background: #c8cbbf;
 	padding: 30px;
 	margin-right: 5px;
 	z-index: 10;
@@ -23,7 +23,7 @@ header {
 	height: 394px;
 	position: relative;
 	padding: 10px;
-	background: #c8cbbf;
+	background: #9ea4a2;
 	border-radius: 4px;
 }
 
@@ -34,4 +34,17 @@ header {
 .row {
 	margin-bottom: 11px;
 	display: inline-block;
+}
+
+#game_over_div {
+	font-size: 40px;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	border-radius: 4px;
+	width: 290px;
+  height: 192px;
+	margin: auto;
+	position: relative;
+	background-color: #0e695d;
 }

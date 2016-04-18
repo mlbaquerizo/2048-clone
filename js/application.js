@@ -1,21 +1,29 @@
 $(document).ready(function() {
 	var game = new Game;
 	startNewGame(game);
-
-	$(this).keydown(function(e){
-		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
+	setUpReset(game);
+	
+	$(this).keydown(function(event){
+		if(event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40){
 			game.bindAll();
 			renderBoard(game);
 			colorizeTiles();
+			console.log(game.canMove());
+			if(game.canMove() === false){
+				$('#game_over_div').show();
+			}
 		}
 	});
 
+});
+
+function setUpReset(game) {
 	$('#reset_game').on('submit', function(event){
 		event.preventDefault();
 		startNewGame(game);
-	})
-
-});
+		$('#game_over_div').hide();
+	});
+}
 
 function startNewGame(game) {
 	game.start();

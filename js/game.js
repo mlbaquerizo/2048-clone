@@ -77,9 +77,7 @@ Game.prototype.addRight = function(){
 	})
 }
 
-Game.prototype.canZipRight = function(){
-	var tileJson = JSON.stringify(this.tiles)
-	var clone = JSON.parse(JSON.stringify(this.tiles));
+function zipCloneRight(clone) {
 	_.each(clone, function(row){
 		_.each(row, function(tile, i){
 			if(tile.value === 0){
@@ -102,49 +100,66 @@ Game.prototype.canZipRight = function(){
 							row.splice(i, 1);
 							while(row.length < 4){
 							row.unshift(new Tile);
+							}
 						}
-					}
+					})
 				})
-			})
 			}
 		}
 	})
+	return clone;
+}
+
+Game.prototype.canZipRight = function(){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	zipCloneRight(clone)
 	return !(tileJson == JSON.stringify(clone));
 }
 
 Game.prototype.canZipLeft = function(){
-	_.each(this.tiles, function(row){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	_.each(clone, function(row){
 		row.reverse();
 	});
-	return this.canZipRight();
-	_.each(this.tiles, function(row){
+	zipCloneRight(clone);
+	_.each(clone, function(row){
 		row.reverse();
 	});
+	return !(tileJson == JSON.stringify(clone));
 }
 
 Game.prototype.canZipUp = function(){
-	this.tiles = _.zip.apply(_, this.tiles)
-	_.each(this.tiles, function(row){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	clone = _.zip.apply(_, clone);
+	_.each(clone, function(row){
 		row.reverse();
 	});
-	return this.canZipRight();
-	_.each(this.tiles, function(row){
+	zipCloneRight(clone);
+	_.each(clone, function(row){
 		row.reverse();
 	});
+	clone = _.zip.apply(_, clone);
+	return !(tileJson == JSON.stringify(clone));
+}
+
+Game.prototype.canZipDown = function(){
+	var tileJson = JSON.stringify(this.tiles)
+	var clone = JSON.parse(JSON.stringify(this.tiles));
+	clone = _.zip.apply(_, clone);
+	zipCloneRight(clone);
+	clone = _.zip.apply(_, clone);
+	return !(tileJson == JSON.stringify(clone));
 }
 
 Game.prototype.canMove = function(){
-	if(this.canZipRight() === true || this.canZipLeft === true || this.canZipUp === true || this.canZipDown === true){
+	if(this.canZipRight() === true || this.canZipLeft() === true || this.canZipUp() === true || this.canZipDown() === true){
 		return true;
 	} else {
 		return false;
 	}
-}
-
-Game.prototype.canZipDown = function(){
-	this.tiles = _.zip.apply(_, this.tiles)
-	return this.canZipRight();
-	this.tiles = _.zip.apply(_, this.tiles)
 }
 
 Game.prototype.insertRandom = function(){
@@ -216,10 +231,3 @@ Game.prototype.bindAll = function(){
 	this.bindDir('up');
 	this.bindDir('down');
 }
-
-// runner code
-
-var game = new Game
-game.start();
-game.bindAll();
-game.toString();
