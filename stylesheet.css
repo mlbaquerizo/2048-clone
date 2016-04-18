@@ -1,12 +1,29 @@
+body {
+	font-family: 'Rubik', sans-serif;
+}
+
 header {
 	margin-left: 45%;
+	margin-bottom: 15px;
+	font-weight: normal;
+}
+
+header h1 {
+	margin: auto;
+}
+
+input[type=submit] {
+	background-color: #565f5c;
+	padding: 10px 12px;
+	border: none;
+	border-radius: 2px;
+	color: white;
 }
 
 .tile {
 	display: inline-block;
 	text-align: center;
-	font-weight: bold;
-	font-size: 30px;
+	font-size: 28px;
 	color: white;
 	background: #c8cbbf;
 	padding: 30px;
@@ -18,8 +35,8 @@ header {
 }
 
 #game_div {
-	margin: auto;
-	width: 389px;
+	margin: auto auto 10px;
+	width: 387px;
 	height: 394px;
 	position: relative;
 	padding: 10px;
@@ -48,5 +65,5 @@ header {
 	margin: auto;
 	position: relative;
 	background-color: #001521;
-	opacity: 0.9;
+	opacity: 0.95;
 }

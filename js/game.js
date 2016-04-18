@@ -219,15 +219,15 @@ Game.prototype.move = function(direction){
 }
 
 
-Game.prototype.bindDir = function(dir){
-	Mousetrap.bind(dir, function(){
+Game.prototype.bindDir = function(keys, dir){
+	Mousetrap.bind(keys, function(){
 		this.move(dir)
 	}.bind(this))
 }
 
 Game.prototype.bindAll = function(){
-	this.bindDir('right');
-	this.bindDir('left');
-	this.bindDir('up');
-	this.bindDir('down');
+	this.bindDir(['right', 'd'], 'right');
+	this.bindDir(['left', 'a'], 'left');
+	this.bindDir(['up', 'w'], 'up');
+	this.bindDir(['down', 's'], 'down');
 }

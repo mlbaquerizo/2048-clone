@@ -3,14 +3,13 @@ $(document).ready(function() {
 	startNewGame(game);
 	setUpReset(game);
 	
-	$(this).keydown(function(event){
-		if(event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40){
+	$(this).keydown(function(e){
+		if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40 || e.keyCode == 65 || e.keyCode == 68 || e.keyCode == 83 || e.keyCode == 87){
 			game.bindAll();
 			renderBoard(game);
 			colorizeTiles();
-			console.log(game.canMove());
 			if(game.canMove() === false){
-				$('#game_over_div').delay(400).fadeIn(300);
+				$('#game_over_div').delay(350).fadeIn(300);
 			}
 		}
 	});
@@ -18,8 +17,8 @@ $(document).ready(function() {
 });
 
 function setUpReset(game) {
-	$('#reset_game').on('submit', function(event){
-		event.preventDefault();
+	$('#reset_game').on('submit', function(e){
+		e.preventDefault();
 		startNewGame(game);
 		$('#game_over_div').fadeOut(300);
 	});

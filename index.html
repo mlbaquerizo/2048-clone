@@ -16,42 +16,50 @@
   <script src="js/mousetrap.js"></script>
   <script src="js/game.js"></script>
   <script defer src="js/application.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Rubik:500,800' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
   <title>2048-clone</title>
 </head>
 <body>
+
   <header>
     <h1>2048</h1>
+
+    <form id="reset_game">
+      <input type="submit" value="New Game"></input>
+    </form>
+
   </header>
+
   <div id="game_div">
-    
-  <div id="game_board">
-    <div class="row" id="row1">
-      <div class="tile outer_left" id="tile1"></div>
-      <div class="tile" id="tile2"></div>
-      <div class="tile" id="tile3"></div>
-      <div class="tile" id="tile4"></div>
+
+    <div id="game_board">
+      <div class="row" id="row1">
+        <div class="tile outer_left" id="tile1"></div>
+        <div class="tile" id="tile2"></div>
+        <div class="tile" id="tile3"></div>
+        <div class="tile" id="tile4"></div>
+      </div>
+      <div class="row" id="row2">
+        <div class="tile outer_left" id="tile5"></div>
+        <div class="tile" id="tile6"></div>
+        <div class="tile" id="tile7"></div>
+        <div class="tile" id="tile8"></div>
+      </div>
+      <div class="row" id="row3">
+        <div class="tile outer_left" id="tile9"></div>
+        <div class="tile" id="tile10"></div>
+        <div class="tile" id="tile11"></div>
+        <div class="tile" id="tile12"></div>
+      </div>
+      <div class="row" id="row4">
+        <div class="tile outer_left" id="tile13"></div>
+        <div class="tile" id="tile14"></div>
+        <div class="tile" id="tile15"></div>
+        <div class="tile" id="tile16"></div>
+      </div>
     </div>
-    <div class="row" id="row2">
-      <div class="tile outer_left" id="tile5"></div>
-      <div class="tile" id="tile6"></div>
-      <div class="tile" id="tile7"></div>
-      <div class="tile" id="tile8"></div>
-    </div>
-    <div class="row" id="row3">
-      <div class="tile outer_left" id="tile9"></div>
-      <div class="tile" id="tile10"></div>
-      <div class="tile" id="tile11"></div>
-      <div class="tile" id="tile12"></div>
-    </div>
-    <div class="row" id="row4">
-      <div class="tile outer_left" id="tile13"></div>
-      <div class="tile" id="tile14"></div>
-      <div class="tile" id="tile15"></div>
-      <div class="tile" id="tile16"></div>
-    </div>
-  </div>
 
     <div id="game_over_div">
       <p>Game Over!</p>
