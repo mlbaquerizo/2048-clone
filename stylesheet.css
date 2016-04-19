@@ -22,12 +22,12 @@ input[type=submit] {
 	outline: none;
 }
 
-#game_directions {
+#game_info {
 	margin-bottom: 15px;
 	text-align: center;
 }
 
-#game_directions p, h3 {
+#game_info p, h3 {
 	margin: 0;
 }
 

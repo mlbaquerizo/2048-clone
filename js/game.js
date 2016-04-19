@@ -8,13 +8,15 @@ Tile.prototype.randomizeTile = function(){
 	this.value = random
 }
 
-function Game(tiles) {
-	this.tiles = [
+function Game(args) {
+	args = args ? args : {};
+	this.tiles = args.tiles || [
 		[new Tile, new Tile, new Tile, new Tile],
 		[new Tile, new Tile, new Tile, new Tile],
 		[new Tile, new Tile, new Tile, new Tile],
 		[new Tile, new Tile, new Tile, new Tile]
 	]
+	this.score = 0
 }
 
 Game.prototype.reset = function(){
@@ -24,6 +26,7 @@ Game.prototype.reset = function(){
 		[new Tile, new Tile, new Tile, new Tile],
 		[new Tile, new Tile, new Tile, new Tile]
 	]
+	this.score = 0;
 }
 
 Game.prototype.start = function(){
@@ -69,6 +72,7 @@ Game.prototype.addRight = function(){
 		for(var i = row.length - 1; i >= 0; i --){
 			if(i > 0 && row[i].value != 0 && row[i].value === row[i - 1].value){
 				var combined = row[i].value + row[i - 1].value;
+				game.score += combined;
 				row[i].value = combined;
 				row[i - 1].value = 0;
 				game.zipRight();
