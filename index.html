@@ -6,7 +6,7 @@
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
-  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+  <link rel="stylesheet" href="css/normalize.css">
   <!--
     application.css is where you put your styles
   -->
@@ -25,17 +25,21 @@
 
   <header>
     <h1>2048</h1>
+  </header>
+
+  <div id="game_info">
+    <h3>DIRECTIONS</h3>
+    <p>Add up like numbers until you get the 2048 tile</p>
+    <p>Use the arrow keys to move the tiles</p>
 
     <form class="reset_game">
       <input type="submit" value="New Game"></input>
     </form>
+    <div id="current_score_div">
+      <p>Score:</p>
+      <p id="current_score"></p>
+    </div>
 
-
-  </header>
-  <div id="game_directions">
-    <h3>DIRECTIONS</h3>
-    <p>Add up like numbers until you get the 2048 tile.</p>
-    <p>Use the arrow keys to move the tiles.</p>
   </div>
 
   <div id="game_div">
