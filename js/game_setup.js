@@ -1,26 +1,41 @@
-function setUpCurrentScore(game) {
-	$('#current_score').html(game.score)
+function GameController(args) {
+	args = args ? args : {};
+	this.game = args.game;
 }
 
-function setUpReset(game) {
+GameController.prototype.setUpCurrentScore = function() {
+	$('#current_score').html(this.game.score)
+}
+
+GameController.prototype.setUpReset = function() {
 	$('.reset_game').on('submit', function(e){
 		e.preventDefault();
 		$('#game_over_div').fadeOut(300);
-		startNewGame(game);
-	});
+		this.startNewGame();
+	}.bind(this));
 }
 
-function startNewGame(game) {
-	game.start();
-	game.bindAll();
-	game.toString();
-	renderBoard(game);
-	colorizeTiles();
+GameController.prototype.startNewGame = function() {
+	this.game.start();
+	this.game.bindAll();
+	this.game.toString();
+	this.renderBoard(this.game);
+	this.colorizeTiles();
 }
 
-function renderBoard(game) {
+GameController.prototype.continueGame = function() {
+	this.game.bindAll();
+	this.renderBoard();
+	this.colorizeTiles();
+	this.setUpCurrentScore();
+	if(this.game.canMove() === false){
+		$('#game_over_div').delay(350).fadeIn(300);
+	}
+}
+
+GameController.prototype.renderBoard = function(){
 	var tileCount = 0
-	_.each(game.tiles, function(row, i){
+	_.each(this.game.tiles, function(row, i){
 		_.each(row, function(tile){
 			tileCount += 1
 			if(i === 0){
@@ -36,7 +51,7 @@ function renderBoard(game) {
 	})
 }
 
-function colorizeTiles() {
+GameController.prototype.colorizeTiles = function() {
 	var $zeroTiles = $('.tile:contains(0)');
 	// $zeroTiles.html("");
 	$zeroTiles.css('background-color', '#c6cecb');
